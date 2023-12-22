@@ -1,9 +1,41 @@
 <!doctype html>
 <style>
     @font-face
-    {
+    {   
         font-family: "Web IBM VGA 8x16";
-        src: url("./demo/web_ibm_vga_8x16.woff") format("woff");
+        src: url("./resources/web_ibm_vga_8x16.woff") format("woff");
+        
+    }
+    /*
+    body 
+    {
+        color: #5DF64A;
+        background-color: #1A1A1D;
+    }*/
+
+    body 
+    {
+        color: #c0c3c0;
+        background-color: #131719;
+    }
+
+    h1,
+    h2, 
+    h3, 
+    h4, 
+    h5, 
+    h6 {
+        color: #33FF00;
+    }
+
+    a:link {
+        color: #33FF00; 
+        background-color: transparent;
+    }
+    
+    a:visited {
+        color: #4c873f;
+        background-color: transparent;
     }
 
     #screen_container
@@ -51,24 +83,24 @@
         min-width: 880px;
     }
 </style>
-<script src="./demo/libv86.js"></script>
+<script src="./resources/libv86.js"></script>
 <script>
     "use strict";
     window.onload = function()
     {
         var emulator = window.emulator = new V86Starter({
-            wasm_path: "./demo/v86.wasm",
+            wasm_path: "./resources/v86.wasm",
             memory_size: 32 * 1024 * 1024,
             vga_memory_size: 4 * 1024,
             screen_container: document.getElementById("screen_container"),
             bios: {
-                url: "./demo/seabios.bin",
+                url: "./resources/seabios.bin",
             },
             vga_bios: {
-                url: "./demo/vgabios.bin",
+                url: "./resources/vgabios.bin",
             },
             hda: {
-                url: "./demo/mp3.img",
+                url: "./resources/mp3.img",
             },
             autostart: true,
         });
@@ -83,15 +115,19 @@
         )
     }
 </script>
-<title>391OS-36 Online Demo</title>
-<h2>Online Demo</h2>
+<head>
+<title>OS Emulator</title>
+</head>
+<body>
+<h2>Demo</h2>
 <hr>
 <div id="screen_container">
     <div id="emu_text"></div>
     <canvas id="emu_screen"></canvas>
     <p id="hint_text">
-        <b>Press Alt+F1/F2/F3 to switch terminal. Press Ctrl+C to interrupt. Press Ctrl+H to get help.<br>
-        Press Ctrl+S to enable/disable scheduler, so it can mimic the environment prior to CP5.</b><br><br>
+        <b>Use Tab to autocomplete files/commands and the up arrow to restore the last command!<br> 
+        Press Alt+F1/F2/F3 to switch terminal, Ctrl+L to clear the screen, and esc to return to the GUI.<br>
+        </b>
         For more combinational keys and technical info, please refer to the <a href="./overview.html" target="_blank">Technical Overview</a> page.<br>
         This page is best viewed on a computer. Refresh the page to reset the emulator.<br>
     </p>
@@ -99,42 +135,24 @@
         <b><a href="JavaScript:popUp();">Open in a Popup Window</a></b>
     </p>
 </div>
-<h3>Introduction</h3>
-<p>
-    <b>391OS-36 is a x86 multitask OS built from scratch.</b> It features:<br>
-    <ul>
-        <li>A custom file system</li>
-        <li>Essential drivers and system calls</li>
-        <li>A scheduler, supports 6 user programs running in 3 terminals</li>
-        <li>Virtual memory, virtualized RTCs, and signals for each user program</li>
-    </ul>
-</p>
-<h3>Office Hours</h3>
-<p>
-    <p>
-        <b>I have graduated from UIUC in December 2023.</b>
-    </p>
-    <p>
-        <del>I am hosting office hours <i>again</i> for ECE 391 in Fall 2023.</del><br>
-        <del>If you ever need help, please come to ECEB 3026 on 4-7 Sat.</del><br>
-    </p>
-    <p>
-        <del>I am hosting office hours for ECE 391 in Spring 2023.</del><br>
-        <del>If you ever need help, please come to ECEB 3026 on 19-22 W or 18-22 F.</del><br>
-    </p>
-</p>
 <div id="known_issue">
-    <h3>Known Issues</h3>
+    <h3 id="known_issue">Known Issues</h3>
     <p>
+        <i>Last updated on Apr. 25, 2023</i>
         <ul>
-            <li><b><i>cat . (root file system)</i> does not work expectedly per the requirements in the MP assignment.</b></li>
-            <ul>
-                <li>Your work should display a list of files (please check the MP documentation). Please do not follow the wrong behavior.
-            </ul>
-            <li>A page fault exception may occur when initializing paging during boot up. This only occurs occasionally in the web emulator.</li>
-            <li>"Kill the process" function in Process Manager (a custom design, not required) is not compatible with the scheduler.</li>
-            <li>The web emulator is not compatible with IDM. Please add os.paizhang.info to the IDM exception list or manually cancel the downloads.</li>
+            <li><b><i>Only unique features</b></li>
         </ul>
     </p>
 </div>
+<h3>Introduction</h3>
+<p>
+    <b>Our OS is an x86 multitask OS built from scratch.</b> It features:<br>
+    <ul>
+        <li>A custom file system</li>
+        <li>Essential drivers and system calls</li>
+        <li>Up to six user applications running in three terminals</li>
+        <li>Scheduler, VRTC, and PIT Support</li>
+    </ul>
+</p>
 <hr>
+</body>
